@@ -7,5 +7,6 @@ using namespace std;
 
 //ACTUAL CODE
 int main() {
+	cout << "Hello World!";
 	return 0;
 }
