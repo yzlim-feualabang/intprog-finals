@@ -1,0 +1,1 @@
+If the program needs to input something with a space, DO NOT USE cin << [variable], IT WILL SKIM OVER THE REST OF THE PROGRAM IF THERE ARE SPACES. Instead, use getline(cin, [variable]), since it extracts the whole string from your input without SPACES CAUSING IT TO SKIM OVER THE REST OF THE PROGRAM.
