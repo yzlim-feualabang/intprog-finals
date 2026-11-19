@@ -11,9 +11,6 @@ using namespace std;
 //GLOBAL VALUES
 const string months[12] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "November", "December"};
 
-//FUNCTION PROTOTYPES
-int MonthToNumber(string date);
-
 //MAIN FUNCTION
 int main() {
 	bool exit=false;
@@ -42,7 +39,7 @@ int main() {
 		cout << "Enter publication year (TYPE 'n.d.' IF THE WEBPAGE DOES NOT HAVE ONE): ";
 		cin >> publicationyear;
 		cout << "\n" << "Your APA reference:" << "\n";
-		cout << authornames << " (" << publicationdate << ") " << title << " Retrieved from " << url << "\n";
+		cout << authornames << " (" << publicationdate << "). " << title << ", Retrieved from " << url << "\n";
 		cout << "\n" << "Your APA in-text citation:" << "\n";
 		cout << "(" << authorlastnames << ", " << publicationyear << ")" << "\n";
 		cout << "Would you like to exit the program? (Y/N): ";
