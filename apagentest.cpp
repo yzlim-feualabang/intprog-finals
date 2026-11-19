@@ -19,20 +19,27 @@ int main() {
 	bool exit=false;
 	char exitchoice;
 	string title,authornames,authorlastnames,url;
-	string publicationyear,publicationdate;
+	string publicationdate;
+	int publicationyear;
 	cout << "~-WEBPAGE APA CITATION GENERATOR-~" << "\n";
 	do {
 		cout << "Enter url: ";
-		cin >> url;
+		//cin >> url;
+		//REGULAR CIN SKIMS OVER THE PROGRAM IF THERE ARE SPACES ADDED
+		getline(cin, url);
 		cout << "Enter webpage title: ";
-		cin >> title;
+		//cin >> title;
+		getline(cin, title);
 		cout << "Enter author/s (FOLLOW THE APA STYLE, SEPARATE WITH COMMA): ";
-		cin >> authornames;
+		//cin >> authornames;
+		getline(cin, authornames);
 		cout << "Enter author/s last name/s (DO NOT INCLUDE FIRST NAME, SEPARATE WITH COMMA): ";
-		cin >> authorlastnames;
+		//cin >> authorlastnames;
+		getline(cin, authorlastnames);
 		cout << "Enter publication date (TYPE 'n.d.' IF THE WEBPAGE DOES NOT HAVE ONE): ";
-		cin >> publicationdate;
-		cout << "Enter publication year (TYPE 'n.d.' IF THE WEBPAGE DOES NOT HAVE ONE):";
+		//cin >> publicationdate;
+		getline(cin, publicationdate);
+		cout << "Enter publication year (TYPE 'n.d.' IF THE WEBPAGE DOES NOT HAVE ONE): ";
 		cin >> publicationyear;
 		cout << "\n" << "Your APA reference:" << "\n";
 		cout << authornames << " (" << publicationdate << ") " << title << " Retrieved from " << url << "\n";
