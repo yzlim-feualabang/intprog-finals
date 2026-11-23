@@ -7,30 +7,38 @@ using namespace std;
 
 //CONSTANTS
 const double pi = 3.14159265359;
+const string hexadigits[] = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"};
 
-//PROTO FUNCTION
+//PROTO FUNCTIONS
 double Area(char shape, double val1=0.0, double val2=0.0, double val3=0.0);
 double Volume(char shape, double val1=0.0, double val2=0.0, double val3=0.0);
 double SurfaceArea(char shape, double val1=0.0, double val2=0.0, double val3=0.0);
+double PythagoreanTheorem(double a=0.0, double b=0.0);
 
-double DecimalToBinary(double decimal=0);
-double DecimalToOctal(double decimal=0);
-string DecimalToHexadecimal(double decimal=0);
+int DecimalToBinary(int decimal=0);
+int DecimalToOctal(int decimal=0);
+string DecimalToHexadecimal(int decimal=0);
 
-double BinaryToDecimal(double binary=0);
-double BinaryToOctal(double binary=0);
-string BinaryToHexadecimal(double binary=0);
+int BinaryToDecimal(int binary=0);
+int BinaryToOctal(int binary=0);
+string BinaryToHexadecimal(int binary=0);
 
-double OctalToDecimal(double binary=0);
-double OctalToBinary(double binary=0);
-string OctalToHexadecimal(double binary=0);
+int OctalToDecimal(int binary=0);
+int OctalToBinary(int binary=0);
+string OctalToHexadecimal(int binary=0);
 
-double HexadecimalToDecimal(string hexa=0);
-double HexadecimalToBinary(string hexa=0);
-string HexadecimalToOctal(string hexa=0);
+int HexadecimalToDecimal(string hexa="0");
+int HexadecimalToBinary(string hexa="0");
+string HexadecimalToOctal(string hexa="0");
 
 int main() {
+	bool exit=false;
+	char choice_a, choice_b, choice_c;
+	int intinput1, intinput2, intinput3;
+	double doubleinput1, doubleinput2, doubleinput3;
 	cout << "~-CAFULI C++ MULTIPURPOSE VERBOSE CALCULATOR-~" << "\n";
+	cin >> intinput1;
+	cout << BinaryToDecimal(intinput1) << endl << BinaryToOctal(intinput1) << endl;
 	return 0;
 }
 
@@ -70,6 +78,34 @@ double Area(char shape, double val1, double val2, double val3) {
 	}
 }
 
+int DecimalToOctal(int decimal) {
+	if (decimal == 0) {
+		return 0;
+	}
+	return (decimal % 8) + 10 * DecimalToOctal(decimal/8); 
+}
+
+int BinaryToDecimal(int binary) {
+	if (binary == 0) {
+		return 0;
+	}
+	return (binary % 10) + 2 * BinaryToDecimal(binary/10);
+}
+
+string BinaryToHexadecimal(int binary) {
+	return "";
+}
+
+int BinaryToOctal(int binary) {
+	double decimal = BinaryToDecimal(binary);
+	return DecimalToOctal(decimal);
+}
+
+double PythagoreanTheorem(double a, double b) {
+	double csqr = pow(a,2.0) + pow(b,2.0);
+	return sqrt(csqr);
+}
+
 double Volume(char shape, double val1, double val2, double val3) {
 	double radius = val1, cheight = val2;
 	double side = val1;
@@ -106,7 +142,7 @@ double Volume(char shape, double val1, double val2, double val3) {
 		case 'e': //ELLIPSOID
 			return (4.0/3.0) * pi * eax1 * eax2 * eax3;
 		default:
-			return 0;
+			return 0.0;
 			break;
 	}
 }
@@ -147,7 +183,7 @@ double SurfaceArea(char shape, double val1, double val2, double val3) {
 		case 'e': //ELLIPSOID
 			return (4.0/3.0) * pi * eax1 * eax2 * eax3;
 		default:
-			return 0;
+			return 0.0;
 			break;
 	}
 }
