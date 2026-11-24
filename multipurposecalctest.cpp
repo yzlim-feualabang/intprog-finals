@@ -96,7 +96,6 @@ string DecimalToHexadecimal(int decimal) {
 	if (decimal < static_cast<int>(16)) {
 		return string(1, hexdigits[decimal]);
 	}
-	
 	return DecimalToHexadecimal(decimal/16) + hexdigits[decimal % 16];
 }
 
@@ -115,6 +114,13 @@ int BinaryToOctal(int binary) {
 string BinaryToHexadecimal(int binary) {
 	double decimal = BinaryToDecimal(binary);
 	return DecimalToHexadecimal(decimal);
+}
+
+int OctalToDecimal(int octal) {
+	if (octal == 0) {
+		return 0;
+	}
+	return (octal % 10) + 8 * BinaryToDecimal(octal/10);
 }
 
 double PythagoreanTheorem(double a, double b) {
