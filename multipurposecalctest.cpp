@@ -7,7 +7,7 @@ using namespace std;
 
 //CONSTANTS
 const double pi = 3.14159265359;
-const string hexadigits[] = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"};
+const string hexdigits = "0123456789ABCDEF";
 
 //PROTO FUNCTIONS
 double Area(char shape, double val1=0.0, double val2=0.0, double val3=0.0);
@@ -38,7 +38,7 @@ int main() {
 	double doubleinput1, doubleinput2, doubleinput3;
 	cout << "~-CAFULI C++ MULTIPURPOSE VERBOSE CALCULATOR-~" << "\n";
 	cin >> intinput1;
-	cout << BinaryToDecimal(intinput1) << endl << BinaryToOctal(intinput1) << endl;
+	cout << BinaryToDecimal(intinput1) << endl << BinaryToOctal(intinput1) << endl << BinaryToHexadecimal(intinput1);
 	return 0;
 }
 
@@ -78,11 +78,26 @@ double Area(char shape, double val1, double val2, double val3) {
 	}
 }
 
+
+int DecimalToBinary(int decimal) {
+	if (decimal == 0) {
+		return 0;
+	}
+}
+
 int DecimalToOctal(int decimal) {
 	if (decimal == 0) {
 		return 0;
 	}
 	return (decimal % 8) + 10 * DecimalToOctal(decimal/8); 
+}
+
+string DecimalToHexadecimal(int decimal) {
+	if (decimal < static_cast<int>(16)) {
+		return string(1, hexdigits[decimal]);
+	}
+	
+	return DecimalToHexadecimal(decimal/16) + hexdigits[decimal % 16];
 }
 
 int BinaryToDecimal(int binary) {
@@ -92,13 +107,14 @@ int BinaryToDecimal(int binary) {
 	return (binary % 10) + 2 * BinaryToDecimal(binary/10);
 }
 
-string BinaryToHexadecimal(int binary) {
-	return "";
-}
-
 int BinaryToOctal(int binary) {
 	double decimal = BinaryToDecimal(binary);
 	return DecimalToOctal(decimal);
+}
+
+string BinaryToHexadecimal(int binary) {
+	double decimal = BinaryToDecimal(binary);
+	return DecimalToHexadecimal(decimal);
 }
 
 double PythagoreanTheorem(double a, double b) {
