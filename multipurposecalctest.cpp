@@ -8,10 +8,13 @@ using namespace std;
 //CONSTANTS
 const double pi = 3.14159265359;
 const string hexdigits = "0123456789ABCDEF";
+const string displaystrings[] = {"Enter your choice>","ERROR: INVALID OUTPUT!"};
 
 //PROTO FUNCTIONS
 
 //GEOMETRY
+double Perimeter(char shape, double val1=0.0, double val2=0.0, double val3=0.0, double val4=0.0);
+double Circumference(double radius=0.0);
 double Area(char shape, double val1=0.0, double val2=0.0, double val3=0.0);
 double Volume(char shape, double val1=0.0, double val2=0.0, double val3=0.0);
 double SurfaceArea(char shape, double val1=0.0, double val2=0.0, double val3=0.0);
@@ -42,16 +45,57 @@ int main() {
 	char charinput1,charinput2,charinput3;
 	int intinput1, intinput2, intinput3;
 	double doubleinput1, doubleinput2, doubleinput3;
-	cout << "~-CAFULI C++ MULTIPURPOSE VERBOSE CALCULATOR-~" << "\n";
+	cout << setw(32) << "CAFULI 4-IN-1 CALCULATOR" << "\n";
 	do {
 		cout << "--------------------------------" << "\n";
-		cout << "CHOICES:" << "\n";
 		cout << "[B] - Basic Mathematics" << "\n";
 		cout << "[G] - Geometry" << "\n";
 		cout << "[T] - Trigonometry" << "\n";
 		cout << "[N] - Number Systems" << "\n";
-		cout << "\n" << "Enter your choice>";
+		cout << "\n" << displaystrings[0];
 		cin >> choice_a;
+		cout << "--------------------------------" << "\n";
+		switch(choice_a) {
+			case 'B':
+				cout << "[A] - Addition" << "\n";
+				cout << "[S] - Subtraction" << "\n";
+				cout << "[M] - Multiplication" << "\n";
+				cout << "[D] - Division" << "\n";
+				cout << "[R] - Modulus" << "\n";
+				cout << "\n" << displaystrings[0];
+				cin >> choice_b;
+				break;
+			case 'G':
+				cout << "[P] - Perimeter" << "\n";
+				cout << "[C] - Circumference" << "\n";
+				cout << "[A] - Areas" << "\n";
+				cout << "[V] - Volumes" << "\n";
+				cout << "[S] - Surface Areas" << "\n";
+				cout << "\n" << displaystrings[0];
+				cin >> choice_b;
+				break;
+			case 'T':
+				cout << "[S] - Sine" << "\n"; //NOTE: ALLOW USER TO PICK WHETHER THEY WANT TO INPUT DEGREES OR RADIANS
+				cout << "[C] - Cosine" << "\n";
+				cout << "[T] - Tangent" << "\n";
+				cout << "[P] - Pythagorean Theorem" << "\n";
+				cout << "[L] - Law of Sines" << "\n";
+				cout << "[O] - Law of Cosines" << "\n";
+				cout << "\n" << displaystrings[0];
+				cin >> choice_b;
+				break;
+			case 'N':
+				cout << "[B] - Convert Binary Number" << "\n";
+				cout << "[O] - Convert Octal Number" << "\n";
+				cout << "[D] - Convert Decimal Number" << "\n";
+				cout << "[H] - Convert Hexadecimal Number" << "\n";
+				cout << "\n" << displaystrings[0];
+				cin >> choice_b;
+				break;
+			default:
+				cout << displaystrings[1] << "\n";
+				break;
+		}
 		cout << "--------------------------------" << "\n";
 		cout << "Would you like to exit? (Y/N)>";
 		cin >> exitinput;
@@ -67,42 +111,6 @@ int main() {
 	}
 	while (exit==false);
 	return 0;
-}
-
-double Area(char shape, double val1, double val2, double val3) {
-	double radius = val1;
-	double side = val1;
-	double length = val1, width = val2;
-	double pbase = val1, pheight = val2;
-	double tbase = val1, theight = val2;
-	double trside1 = val1, trside2 = val2, trheight = val3;
-	double diag1 = val1, diag2 = val2;
-	switch(shape) {
-		case 'c': //CUBE
-			return pi * pow(radius, 2.0);
-			break;
-		case 's': //SPHERE
-			return side * side;
-			break;
-		case 'r': //RECTANGLE
-			return length * width;
-			break;
-		case 'p': //PARALLELOGRAM
-			return pbase * pheight;
-			break;
-		case 't': //TRIANGLE
-			return (1.0/2.0) * (tbase * theight);
-			break;
-		case 'T': //TRAPEZOID
-			return (1.0/2.0) * (trside1 + trside2) * trheight;
-			break;
-		case 'R': //RHOMBUS
-			return (1.0/2.0) * diag1 * diag2;
-			break;
-		default:
-			return 0;
-			break;
-	}
 }
 
 double DegreesToRadians(double degrees) {
@@ -271,6 +279,72 @@ double LawOfCosines(char missing, double num1, double num2, double num3, double 
 			break;
 		default:
 			return 0.0;
+			break;
+	}
+}
+
+double Perimeter(char shape, double val1, double val2, double val3, double val4) {
+	double side = val1;
+	double length = val1, width = val2;
+	double tside1 = val1, tside2 = val2, tside3 = val3;
+	double trside1 = val1, trside2 = val2, trside3 = val3, trside4 = val4;
+	switch(shape) {
+		case 's': //SQUARE
+		case 'R': //RHOMBUS
+			return side * 4;
+			break;
+		case 'r': //RECTANGLE
+		case 'p': //PARALLELOGRAM
+			return 2 * (length + width);
+			break;
+		case 't': //TRIANGLE
+			return tside1 + tside2 + tside3;
+			break;
+		case 'T': //TRAPEZOID
+			return trside1 + trside2 + trside3 + trside4;
+			break;
+		default:
+			return 0;
+			break;
+	}
+}
+
+double Circumference(double radius) {
+	return 2 * pi * radius;
+}
+
+double Area(char shape, double val1, double val2, double val3) {
+	double radius = val1;
+	double side = val1;
+	double length = val1, width = val2;
+	double pbase = val1, pheight = val2;
+	double tbase = val1, theight = val2;
+	double trside1 = val1, trside2 = val2, trheight = val3;
+	double diag1 = val1, diag2 = val2;
+	switch(shape) {
+		case 'c': //CIRCLE
+			return pi * pow(radius, 2.0);
+			break;
+		case 's': //SQUARE
+			return side * side;
+			break;
+		case 'r': //RECTANGLE
+			return length * width;
+			break;
+		case 'p': //PARALLELOGRAM
+			return pbase * pheight;
+			break;
+		case 't': //TRIANGLE
+			return (1.0/2.0) * (tbase * theight);
+			break;
+		case 'T': //TRAPEZOID
+			return (1.0/2.0) * (trside1 + trside2) * trheight;
+			break;
+		case 'R': //RHOMBUS
+			return (1.0/2.0) * diag1 * diag2;
+			break;
+		default:
+			return 0;
 			break;
 	}
 }
