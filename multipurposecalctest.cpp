@@ -10,35 +10,61 @@ const double pi = 3.14159265359;
 const string hexdigits = "0123456789ABCDEF";
 
 //PROTO FUNCTIONS
+
+//GEOMETRY
 double Area(char shape, double val1=0.0, double val2=0.0, double val3=0.0);
 double Volume(char shape, double val1=0.0, double val2=0.0, double val3=0.0);
 double SurfaceArea(char shape, double val1=0.0, double val2=0.0, double val3=0.0);
-double PythagoreanTheorem(double a=0.0, double b=0.0);
 
+//TRIGONOMETRY
+double PythagoreanTheorem(double a=0.0, double b=0.0);
+double LawOfSines(char missing='c', double num1=0.0, double num2=0.0, double degrees=0.0);
+double LawOfCosines(char missing='c', double num1=0.0, double num2=0.0, double degrees=0.0);
+
+//NUMBER SYSTEMS
 int DecimalToBinary(int decimal=0);
 int DecimalToOctal(int decimal=0);
 string DecimalToHexadecimal(int decimal=0);
-
 int BinaryToDecimal(int binary=0);
 int BinaryToOctal(int binary=0);
 string BinaryToHexadecimal(int binary=0);
-
 int OctalToDecimal(int binary=0);
 int OctalToBinary(int binary=0);
 string OctalToHexadecimal(int binary=0);
-
 int HexadecimalToDecimal(string hexa="0");
 int HexadecimalToBinary(string hexa="0");
-string HexadecimalToOctal(string hexa="0");
+int HexadecimalToOctal(string hexa="0");
 
 int main() {
 	bool exit=false;
-	char choice_a, choice_b, choice_c;
+	char choice_a, choice_b, choice_c, exitinput;
+	char charinput1,charinput2,charinput3;
 	int intinput1, intinput2, intinput3;
 	double doubleinput1, doubleinput2, doubleinput3;
 	cout << "~-CAFULI C++ MULTIPURPOSE VERBOSE CALCULATOR-~" << "\n";
-	cin >> intinput1;
-	cout << BinaryToDecimal(intinput1) << endl << BinaryToOctal(intinput1) << endl << BinaryToHexadecimal(intinput1);
+	do {
+		cout << "--------------------------------" << "\n";
+		cout << "CHOICES:" << "\n";
+		cout << "[B] - Basic Mathematics" << "\n";
+		cout << "[G] - Geometry" << "\n";
+		cout << "[T] - Trigonometry" << "\n";
+		cout << "[N] - Number Systems" << "\n";
+		cout << "\n" << "Enter your choice>";
+		cin >> choice_a;
+		cout << "--------------------------------" << "\n";
+		cout << "Would you like to exit? (Y/N)>";
+		cin >> exitinput;
+		switch(exitinput) {
+			case 'Y':
+			case 'y':
+				exit = true;
+				break;
+			default:
+				exit = false;
+				break;
+		}
+	}
+	while (exit==false);
 	return 0;
 }
 
@@ -83,6 +109,7 @@ int DecimalToBinary(int decimal) {
 	if (decimal == 0) {
 		return 0;
 	}
+	return (decimal % 2) + 10 * DecimalToBinary(decimal/2);
 }
 
 int DecimalToOctal(int decimal) {
@@ -107,13 +134,18 @@ int BinaryToDecimal(int binary) {
 }
 
 int BinaryToOctal(int binary) {
-	double decimal = BinaryToDecimal(binary);
+	int decimal = BinaryToDecimal(binary);
 	return DecimalToOctal(decimal);
 }
 
 string BinaryToHexadecimal(int binary) {
-	double decimal = BinaryToDecimal(binary);
+	int decimal = BinaryToDecimal(binary);
 	return DecimalToHexadecimal(decimal);
+}
+
+int OctalToBinary(int octal) {
+	int decimal = OctalToDecimal(octal);
+	return DecimalToBinary(decimal);
 }
 
 int OctalToDecimal(int octal) {
@@ -121,6 +153,25 @@ int OctalToDecimal(int octal) {
 		return 0;
 	}
 	return (octal % 10) + 8 * BinaryToDecimal(octal/10);
+}
+
+string OctalToHexadecimal(int octal) {
+	int decimal = OctalToDecimal(octal);
+	return DecimalToHexadecimal(decimal);
+}
+
+int HexadecimalToDecimal(string hexadecimal) {
+	return stoi(hexadecimal, nullptr, 16);
+}
+
+int HexadecimalToBinary(string hexadecimal) {
+	int decimal = HexadecimalToDecimal(hexadecimal);
+	return DecimalToBinary(decimal);
+}
+
+int HexadecimalToOctal(string hexadecimal) {
+	int decimal = HexadecimalToDecimal(hexadecimal);
+	return DecimalToOctal(decimal);
 }
 
 double PythagoreanTheorem(double a, double b) {
@@ -207,5 +258,35 @@ double SurfaceArea(char shape, double val1, double val2, double val3) {
 		default:
 			return 0.0;
 			break;
+	}
+}
+
+double LawOfCosines(char missing, double num1, double num2, double degrees) {
+	double a,b,c,sqr,radians;
+	radians = degrees * (pi/180.00);
+	switch(missing) {
+		case 'a':
+			b = num1;
+			c = num2;
+			sqr = (2*b*c) * cos(radians);
+			a = sqrt(sqr);
+			return a;
+			break;
+		case 'b':
+			a = num1;
+			c = num2;
+			sqr = (2*a*c) * cos(radians);
+			b = sqrt(sqr);
+			return b;
+			break;
+		case 'c':
+			a = num1;
+			b = num2;
+			sqr = (2*a*b) * cos(radians);
+			c = sqrt(sqr);
+			return c;
+			break;
+		default:
+			return 0.00;
 	}
 }
