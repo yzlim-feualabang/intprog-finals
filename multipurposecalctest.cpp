@@ -17,7 +17,7 @@ double Volume(char shape, double val1=0.0, double val2=0.0, double val3=0.0);
 double SurfaceArea(char shape, double val1=0.0, double val2=0.0, double val3=0.0);
 
 //TRIGONOMETRY
-double PythagoreanTheorem(double a=0.0, double b=0.0);
+double PythagoreanTheorem(char missing='c', double num1=0.0, double num2=0.0);
 double LawOfSines(char missing='c', double num1=0.0, double num2=0.0, double degrees=0.0);
 double LawOfCosines(char missing='c', double num1=0.0, double num2=0.0, double degrees=0.0);
 
@@ -174,9 +174,62 @@ int HexadecimalToOctal(string hexadecimal) {
 	return DecimalToOctal(decimal);
 }
 
-double PythagoreanTheorem(double a, double b) {
-	double csqr = pow(a,2.0) + pow(b,2.0);
-	return sqrt(csqr);
+double PythagoreanTheorem(char missing, double num1, double num2) {
+	double a,b,c,sqr,radians;
+	radians = degrees * (pi/180.00);
+	switch(missing) {
+		case 'a':
+			b = num1;
+			c = num2;
+			sqr = pow(c,2) - pow(b,2);
+			a = sqrt(sqr);
+			return a;
+			break;
+		case 'b':
+			a = num1;
+			c = num2;
+			sqr = pow(c,2) - pow(a,2);
+			b = sqrt(sqr);
+			return b;
+			break;
+		case 'c':
+		default:
+			a = num1;
+			b = num2;
+			sqr = pow(a,2) + pow(b,2);
+			c = sqrt(sqr);
+			return c;
+			break;
+	}
+}
+
+double LawOfCosines(char missing, double num1, double num2, double degrees) {
+	double a,b,c,sqr,radians;
+	radians = degrees * (pi/180.00);
+	switch(missing) {
+		case 'a':
+			b = num1;
+			c = num2;
+			sqr = (2*b*c) * cos(radians);
+			a = sqrt(sqr);
+			return a;
+			break;
+		case 'b':
+			a = num1;
+			c = num2;
+			sqr = (2*a*c) * cos(radians);
+			b = sqrt(sqr);
+			return b;
+			break;
+		case 'c':
+		default:
+			a = num1;
+			b = num2;
+			sqr = (2*a*b) * cos(radians);
+			c = sqrt(sqr);
+			return c;
+			break;
+	}
 }
 
 double Volume(char shape, double val1, double val2, double val3) {
@@ -258,35 +311,5 @@ double SurfaceArea(char shape, double val1, double val2, double val3) {
 		default:
 			return 0.0;
 			break;
-	}
-}
-
-double LawOfCosines(char missing, double num1, double num2, double degrees) {
-	double a,b,c,sqr,radians;
-	radians = degrees * (pi/180.00);
-	switch(missing) {
-		case 'a':
-			b = num1;
-			c = num2;
-			sqr = (2*b*c) * cos(radians);
-			a = sqrt(sqr);
-			return a;
-			break;
-		case 'b':
-			a = num1;
-			c = num2;
-			sqr = (2*a*c) * cos(radians);
-			b = sqrt(sqr);
-			return b;
-			break;
-		case 'c':
-			a = num1;
-			b = num2;
-			sqr = (2*a*b) * cos(radians);
-			c = sqrt(sqr);
-			return c;
-			break;
-		default:
-			return 0.00;
 	}
 }
