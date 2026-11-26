@@ -15,10 +15,11 @@ const string hexdigits = "0123456789ABCDEF";
 double Area(char shape, double val1=0.0, double val2=0.0, double val3=0.0);
 double Volume(char shape, double val1=0.0, double val2=0.0, double val3=0.0);
 double SurfaceArea(char shape, double val1=0.0, double val2=0.0, double val3=0.0);
+double DegreesToRadians(double degrees=0.0);
 
 //TRIGONOMETRY
 double PythagoreanTheorem(char missing='c', double num1=0.0, double num2=0.0);
-double LawOfSines(char missing='c', double num1=0.0, double num2=0.0, double degrees=0.0);
+double LawOfSines(char missing='A', double num1=0.0, double num2=0.0, double num3=0.0);
 double LawOfCosines(char missing='c', double num1=0.0, double num2=0.0, double degrees=0.0);
 
 //NUMBER SYSTEMS
@@ -104,6 +105,11 @@ double Area(char shape, double val1, double val2, double val3) {
 	}
 }
 
+double DegreesToRadians(double degrees) {
+	double radians;
+	radians = degrees * (pi/180.00);
+	return radians;
+}
 
 int DecimalToBinary(int decimal) {
 	if (decimal == 0) {
@@ -175,8 +181,7 @@ int HexadecimalToOctal(string hexadecimal) {
 }
 
 double PythagoreanTheorem(char missing, double num1, double num2) {
-	double a,b,c,sqr,radians;
-	radians = degrees * (pi/180.00);
+	double a,b,c,sqr;
 	switch(missing) {
 		case 'a':
 			b = num1;
@@ -203,31 +208,69 @@ double PythagoreanTheorem(char missing, double num1, double num2) {
 	}
 }
 
-double LawOfCosines(char missing, double num1, double num2, double degrees) {
+double LawOfSines(char missing, double num1, double num2, double num3) {
+	double a,b,A,B;
+	switch(missing) {
+		case 'a':
+			b = num1;
+			A = DegreesToRadians(num2);
+			B = DegreesToRadians(num3);
+			a = b * (sin(A)/sin(B));
+			return a;
+			break;
+		case 'b':
+			a = num1;
+			A = DegreesToRadians(num2);
+			B = DegreesToRadians(num3);
+			b = a * (sin(B)/sin(A));
+			return b;
+			break;
+		case 'A':
+			a = num1;
+			b = num2;
+			B = DegreesToRadians(num3);
+			A = asin((a*sin(B))/b);
+			return A;
+			break;
+		case 'B':
+			a = num1;
+			b = num2;
+			A = DegreesToRadians(num3);
+			B = asin((b*sin(A))/a);
+			return B;
+			break;
+		default:
+			return 0.0;
+			break;
+	}
+}
+
+double LawOfCosines(char missing, double num1, double num2, double num3, double angle) {
 	double a,b,c,sqr,radians;
-	radians = degrees * (pi/180.00);
 	switch(missing) {
 		case 'a':
 			b = num1;
 			c = num2;
-			sqr = (2*b*c) * cos(radians);
+			sqr = (2*b*c) * cos(DegreesToRadians(angle));
 			a = sqrt(sqr);
 			return a;
 			break;
 		case 'b':
 			a = num1;
 			c = num2;
-			sqr = (2*a*c) * cos(radians);
+			sqr = (2*a*c) * cos(DegreesToRadians(angle));
 			b = sqrt(sqr);
 			return b;
 			break;
 		case 'c':
-		default:
 			a = num1;
 			b = num2;
-			sqr = (2*a*b) * cos(radians);
+			sqr = (2*a*b) * cos(DegreesToRadians(angle));
 			c = sqrt(sqr);
 			return c;
+			break;
+		default:
+			return 0.0;
 			break;
 	}
 }
