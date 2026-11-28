@@ -8,7 +8,8 @@ using namespace std;
 //CONSTANTS
 const double pi = 3.14159265359;
 const string hexdigits = "0123456789ABCDEF";
-const string displaystrings[] = {"Enter your choice>","ERROR: INVALID OUTPUT!"};
+const string displaystrings[] = {"Enter your choice>","ERROR: INVALID INPUT!","Would you like to exit? (Y/N)>"};
+const string headerstrings[] = {"MAIN MENU:","BASIC ARITHMETIC:","GEOMETRY:","TRIGONOMETRY:","NUMBER SYSTEMS:"};
 
 //PROTO FUNCTIONS
 
@@ -19,6 +20,7 @@ double Area(char shape, double val1=0.0, double val2=0.0, double val3=0.0);
 double Volume(char shape, double val1=0.0, double val2=0.0, double val3=0.0);
 double SurfaceArea(char shape, double val1=0.0, double val2=0.0, double val3=0.0);
 double DegreesToRadians(double degrees=0.0);
+double RadiansToDegrees(double radians=0.0);
 
 //TRIGONOMETRY
 double PythagoreanTheorem(char missing='c', double num1=0.0, double num2=0.0);
@@ -48,7 +50,8 @@ int main() {
 	cout << setw(32) << "CAFULI 4-IN-1 CALCULATOR" << "\n";
 	do {
 		cout << "--------------------------------" << "\n";
-		cout << "[B] - Basic Mathematics" << "\n";
+		cout << headerstrings[0] << "\n";
+		cout << "[A] - Basic Arithmetic" << "\n";
 		cout << "[G] - Geometry" << "\n";
 		cout << "[T] - Trigonometry" << "\n";
 		cout << "[N] - Number Systems" << "\n";
@@ -56,31 +59,76 @@ int main() {
 		cin >> choice_a;
 		cout << "--------------------------------" << "\n";
 		switch(choice_a) {
-			case 'B':
+			case 'A':
+				cout << headerstrings[1] << "\n";
 				cout << "[A] - Addition" << "\n";
 				cout << "[S] - Subtraction" << "\n";
 				cout << "[M] - Multiplication" << "\n";
 				cout << "[D] - Division" << "\n";
-				cout << "[R] - Modulus" << "\n";
+				cout << "[R] - Modulus/Get Remainder" << "\n";
 				cout << "\n" << displaystrings[0];
 				cin >> choice_b;
-				switch(choice_b)
-					default:
+				cout << "--------------------------------" << "\n";
+				switch(choice_b) {
+					case 'A':
+						cout << "ADDITION:" << "\n";
+						cout << "\n" << "Enter two numbers>";
+						cin >> doubleinput1 >> doubleinput2;
+						cout << doubleinput1 << "+" << doubleinput2 << "\n";
+						cout << "= "<< doubleinput1 + doubleinput2 << "\n";
 						break;
+					case 'S':
+						cout << "SUBTRACTION:" << "\n";
+						cout << "\n" << "Enter two numbers>";
+						cin >> doubleinput1 >> doubleinput2;
+						cout << doubleinput1 << "-" << doubleinput2 << "\n";
+						cout << "= "<< doubleinput1 - doubleinput2 << "\n";
+						break;
+					case 'M':
+						cout << "MULTIPLICATION:" << "\n";
+						cout << "\n" << "Enter two numbers>";
+						cin >> doubleinput1 >> doubleinput2;
+						cout << doubleinput1 << "*" << doubleinput2 << "\n";
+						cout << "= "<< doubleinput1 * doubleinput2 << "\n";
+						break;
+					case 'D':
+						cout << "DIVISION:" << "\n";
+						cout << "\n" << "Enter two numbers>";
+						cin >> doubleinput1 >> doubleinput2;
+						cout << doubleinput1 << "/" << doubleinput2 << "\n";
+						cout << "= "<< doubleinput1 * doubleinput2 << "\n";
+						break;
+					case 'R':
+						cout << "MODULUS/GET REMAINDER:" << "\n";
+						cout << "\n" << "Enter two numbers>";
+						cin >> intinput1 >> intinput2;
+						cout << intinput1 << "%" << intinput2 << "\n";
+						cout << "= "<< intinput1 % intinput2 << "\n";
+						break;
+					default:
+						cout << displaystrings[1] << "\n";
+						break;
+				}
 				break;
 			case 'G':
+				cout << headerstrings[2] << "\n";
 				cout << "[P] - Perimeter" << "\n";
 				cout << "[C] - Circumference" << "\n";
 				cout << "[A] - Areas" << "\n";
 				cout << "[V] - Volumes" << "\n";
 				cout << "[S] - Surface Areas" << "\n";
+				cout << "[D] - Degrees To Radians" << "\n";
+				cout << "[D] - Radians To Degrees" << "\n";
 				cout << "\n" << displaystrings[0];
 				cin >> choice_b;
-				switch(choice_b)
+				cout << "--------------------------------" << "\n";
+				switch(choice_b) {
 					default:
 						break;
+				}
 				break;
 			case 'T':
+				cout << headerstrings[3] << "\n";
 				cout << "[S] - Sine" << "\n"; //NOTE: ALLOW USER TO PICK WHETHER THEY WANT TO INPUT DEGREES OR RADIANS
 				cout << "[C] - Cosine" << "\n";
 				cout << "[T] - Tangent" << "\n";
@@ -95,14 +143,22 @@ int main() {
 					cout << "[R] - Input is in Radians" << "\n";
 					cout << "\n" << "What is your input in?>";
 					cin >> choice_c;
-				}
-				else {
-					switch(choice_b)
+					cout << "--------------------------------" << "\n";
+					switch(choice_c) {
 						default:
 							break;
+					}
+				}
+				else {
+					switch(choice_b) {
+						default:
+							break;
+					}
+
 				}
 				break;
 			case 'N':
+				cout << headerstrings[4] << "\n";
 				cout << "[B] - Convert Binary Number" << "\n";
 				cout << "[O] - Convert Octal Number" << "\n";
 				cout << "[D] - Convert Decimal Number" << "\n";
@@ -110,16 +166,17 @@ int main() {
 				cout << "\n" << displaystrings[0];
 				cin >> choice_b;
 				cout << "--------------------------------" << "\n";
-				switch(choice_b)
+				switch(choice_b) {
 					default:
 						break;
+				}
 				break;
 			default:
 				cout << displaystrings[1] << "\n";
 				break;
 		}
 		cout << "--------------------------------" << "\n";
-		cout << "Would you like to exit? (Y/N)>";
+		cout << displaystrings[2];
 		cin >> exitinput;
 		switch(exitinput) {
 			case 'Y':
@@ -139,6 +196,12 @@ double DegreesToRadians(double degrees) {
 	double radians;
 	radians = degrees * (pi/180.00);
 	return radians;
+}
+
+double RadiansToDegrees(double radians) {
+	double degrees;
+	radians = radians * (180.00/pi);
+	return degrees;
 }
 
 int DecimalToBinary(int decimal) {
