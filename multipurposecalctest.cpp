@@ -9,7 +9,9 @@ using namespace std;
 const double pi = 3.14159265359;
 const string hexdigits = "0123456789ABCDEF";
 const string displaystrings[] = {"Enter your choice>","ERROR: INVALID INPUT!","Would you like to exit? (Y/N)>"};
-const string headerstrings[] = {"MAIN MENU:","BASIC ARITHMETIC:","GEOMETRY:","TRIGONOMETRY:","NUMBER SYSTEMS:"};
+const string headerstrings[] = {"MAIN MENU:","BASIC ARITHMETIC:","GEOMETRY:","TRIGONOMETRY:","NUMBER SYSTEMS:",};
+const string headerprefixstrings[] = {"PERIMETER OF", "AREA OF", "VOLUME OF", "SURFACE AREA OF"};
+const string headersuffixstrings[] = {" (RADIANS):", " (DEGREES):"};
 
 //PROTO FUNCTIONS
 
@@ -47,6 +49,7 @@ int main() {
 	char charinput1,charinput2,charinput3;
 	int intinput1, intinput2, intinput3;
 	double doubleinput1, doubleinput2, doubleinput3;
+	string headerprefix,headersuffix;
 	cout << setw(32) << "CAFULI 4-IN-1 CALCULATOR" << "\n";
 	do {
 		cout << "--------------------------------" << "\n";
@@ -75,35 +78,35 @@ int main() {
 						cout << "\n" << "Enter two numbers>";
 						cin >> doubleinput1 >> doubleinput2;
 						cout << doubleinput1 << "+" << doubleinput2 << "\n";
-						cout << "= "<< doubleinput1 + doubleinput2 << "\n";
+						cout << "="<< doubleinput1 + doubleinput2 << "\n";
 						break;
 					case 'S':
 						cout << "SUBTRACTION:" << "\n";
 						cout << "\n" << "Enter two numbers>";
 						cin >> doubleinput1 >> doubleinput2;
 						cout << doubleinput1 << "-" << doubleinput2 << "\n";
-						cout << "= "<< doubleinput1 - doubleinput2 << "\n";
+						cout << "="<< doubleinput1 - doubleinput2 << "\n";
 						break;
 					case 'M':
 						cout << "MULTIPLICATION:" << "\n";
 						cout << "\n" << "Enter two numbers>";
 						cin >> doubleinput1 >> doubleinput2;
 						cout << doubleinput1 << "*" << doubleinput2 << "\n";
-						cout << "= "<< doubleinput1 * doubleinput2 << "\n";
+						cout << "="<< doubleinput1 * doubleinput2 << "\n";
 						break;
 					case 'D':
 						cout << "DIVISION:" << "\n";
 						cout << "\n" << "Enter two numbers>";
 						cin >> doubleinput1 >> doubleinput2;
 						cout << doubleinput1 << "/" << doubleinput2 << "\n";
-						cout << "= "<< doubleinput1 * doubleinput2 << "\n";
+						cout << "="<< doubleinput1 * doubleinput2 << "\n";
 						break;
 					case 'R':
 						cout << "MODULUS/GET REMAINDER:" << "\n";
 						cout << "\n" << "Enter two numbers>";
 						cin >> intinput1 >> intinput2;
 						cout << intinput1 << "%" << intinput2 << "\n";
-						cout << "= "<< intinput1 % intinput2 << "\n";
+						cout << "="<< intinput1 % intinput2 << "\n";
 						break;
 					default:
 						cout << displaystrings[1] << "\n";
@@ -124,6 +127,7 @@ int main() {
 				cout << "--------------------------------" << "\n";
 				switch(choice_b) {
 					default:
+						cout << displaystrings[1] << "\n";
 						break;
 				}
 				break;
@@ -138,20 +142,80 @@ int main() {
 				cout << "\n" << displaystrings[0];
 				cin >> choice_b;
 				cout << "--------------------------------" << "\n";
-				if (choice_b == 'S' || choice_b == 'T' || choice_b == 'T') {
+				if (choice_b == 'S' || choice_b == 'C' || choice_b == 'T') {
+					switch(choice_b) {
+						case 'S':
+							cout << "SINE:" << "\n";
+							break;
+						case 'C':
+							cout << "COSINE:" << "\n";
+							break;
+						case 'T':
+							cout << "TANGENT:" << "\n";
+							break;
+						default:
+							break;
+					}
 					cout << "[D] - Input is in Degrees" << "\n";
 					cout << "[R] - Input is in Radians" << "\n";
 					cout << "\n" << "What is your input in?>";
 					cin >> choice_c;
 					cout << "--------------------------------" << "\n";
-					switch(choice_c) {
-						default:
-							break;
+					if (choice_c == 'D' || choice_c == 'R') {
+						if (choice_c == 'D') {
+							headersuffix = headersuffixstrings[1];
+						} else {
+							headersuffix = headersuffixstrings[0];
+						}
+						switch(choice_b) {
+							case 'S':
+								cout << "SINE" << headersuffix << "\n";
+								cout << "\n" << "Enter your angle>";
+								cin >> doubleinput1;
+								cout << "sin(" << doubleinput1 << ")" << "\n";
+								cout << "=";
+								if (choice_c == 'D') {
+									cout << sin(DegreesToRadians(doubleinput1));
+								} else {
+									cout << sin(doubleinput1);
+								}
+								cout << "\n";
+								break;
+							case 'C':
+								cout << "COSINE" << headersuffix << "\n";
+								cout << "\n" << "Enter your angle>";
+								cin >> doubleinput1;
+								cout << "cos(" << doubleinput1 << ")" << "\n";
+								cout << "=";
+								if (choice_c == 'D') {
+									cout << cos(DegreesToRadians(doubleinput1));
+								} else {
+									cout << cos(doubleinput1);
+								}
+								cout << "\n";
+								break;
+							case 'T':
+								cout << "TANGENT" << headersuffix << "\n";
+								cout << "\n" << "Enter your angle>";
+								cin >> doubleinput1;
+								cout << "tan(" << doubleinput1 << ")" << "\n";
+								cout << "=";
+								if (choice_c == 'D') {
+									cout << tan(DegreesToRadians(doubleinput1));
+								} else {
+									cout << tan(doubleinput1);
+								}
+								cout << "\n";
+								break;
+							default:
+								break;
+						}
 					}
 				}
 				else {
 					switch(choice_b) {
 						default:
+							cout << displaystrings[1] << "\n";
 							break;
 					}
 
@@ -168,6 +232,7 @@ int main() {
 				cout << "--------------------------------" << "\n";
 				switch(choice_b) {
 					default:
+						cout << displaystrings[1] << "\n";
 						break;
 				}
 				break;
