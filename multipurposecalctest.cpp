@@ -64,6 +64,9 @@ int main() {
 				cout << "[R] - Modulus" << "\n";
 				cout << "\n" << displaystrings[0];
 				cin >> choice_b;
+				switch(choice_b)
+					default:
+						break;
 				break;
 			case 'G':
 				cout << "[P] - Perimeter" << "\n";
@@ -73,6 +76,9 @@ int main() {
 				cout << "[S] - Surface Areas" << "\n";
 				cout << "\n" << displaystrings[0];
 				cin >> choice_b;
+				switch(choice_b)
+					default:
+						break;
 				break;
 			case 'T':
 				cout << "[S] - Sine" << "\n"; //NOTE: ALLOW USER TO PICK WHETHER THEY WANT TO INPUT DEGREES OR RADIANS
@@ -83,6 +89,18 @@ int main() {
 				cout << "[O] - Law of Cosines" << "\n";
 				cout << "\n" << displaystrings[0];
 				cin >> choice_b;
+				cout << "--------------------------------" << "\n";
+				if (choice_b == 'S' || choice_b == 'T' || choice_b == 'T') {
+					cout << "[D] - Input is in Degrees" << "\n";
+					cout << "[R] - Input is in Radians" << "\n";
+					cout << "\n" << "What is your input in?>";
+					cin >> choice_c;
+				}
+				else {
+					switch(choice_b)
+						default:
+							break;
+				}
 				break;
 			case 'N':
 				cout << "[B] - Convert Binary Number" << "\n";
@@ -91,6 +109,10 @@ int main() {
 				cout << "[H] - Convert Hexadecimal Number" << "\n";
 				cout << "\n" << displaystrings[0];
 				cin >> choice_b;
+				cout << "--------------------------------" << "\n";
+				switch(choice_b)
+					default:
+						break;
 				break;
 			default:
 				cout << displaystrings[1] << "\n";
