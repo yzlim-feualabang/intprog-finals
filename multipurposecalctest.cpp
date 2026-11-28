@@ -115,20 +115,95 @@ int main() {
 				break;
 			case 'G':
 				cout << headerstrings[2] << "\n";
-				cout << "[P] - Perimeter" << "\n";
+				cout << "[P] - Perimeters" << "\n";
 				cout << "[C] - Circumference" << "\n";
 				cout << "[A] - Areas" << "\n";
 				cout << "[V] - Volumes" << "\n";
 				cout << "[S] - Surface Areas" << "\n";
 				cout << "[D] - Degrees To Radians" << "\n";
-				cout << "[D] - Radians To Degrees" << "\n";
+				cout << "[R] - Radians To Degrees" << "\n";
 				cout << "\n" << displaystrings[0];
 				cin >> choice_b;
 				cout << "--------------------------------" << "\n";
 				switch(choice_b) {
+					case 'P':
+						cout << "PERIMETERS:" << "\n";
+						cout << "[s] - Perimeter of Square" << "\n";
+						cout << "[r] - Perimeter of Rectangle" << "\n";
+						cout << "[p] - Perimeter of Parallelogram" << "\n";
+						cout << "[t] - Perimeter of Triangle" << "\n";
+						cout << "[T] - Perimeter of Trapezoid" << "\n";
+						cout << "[R] - Perimeter of Rhombus" << "\n";
+						cout << "\n" << displaystrings[0];
+						cin >> choice_c;
+						break;
+					case 'A':
+						cout << "AREAS:" << "\n";
+						cout << "[c] - Area of Circle" << "\n";
+						cout << "[s] - Area of Square" << "\n";
+						cout << "[r] - Area of Rectangle" << "\n";
+						cout << "[p] - Area of Parallelogram" << "\n";
+						cout << "[t] - Area of Triangle" << "\n";
+						cout << "[T] - Area of Trapezoid" << "\n";
+						cout << "[R] - Area of Rhombus" << "\n";
+						cout << "\n" << displaystrings[0];
+						cin >> choice_c;
+						break;
+					case 'V':
+						cout << "VOLUMES:" << "\n";
+						cout << "[c] - Volume of Cube" << "\n";
+						cout << "[s] - Volume of Sphere" << "\n";
+						cout << "[r] - Volume of Rectangular Prism" << "\n";
+						cout << "[n] - Volume of Non-Rectangular Prism" << "\n";
+						cout << "[t] - Volume of Triangular Prism" << "\n";
+						cout << "[P] - Volume of Pyramid" << "\n";
+						cout << "[C] - Volume of Cone" << "\n";
+						cout << "[h] - Volume of Hemisphere" << "\n";
+						cout << "[e] - Volume of Ellipsoid" << "\n";
+						cout << "\n" << displaystrings[0];
+						cin >> choice_c;
+						break;
+					case 'S':
+						cout << "SURFACE AREAS:" << "\n";
+						cout << "[c] - Surface Area of Cube" << "\n";
+						cout << "[s] - Surface Area of Sphere" << "\n";
+						cout << "[r] - Surface Area of Rectangular Prism" << "\n";
+						cout << "[n] - Surface Area of Non-Rectangular Prism" << "\n";
+						cout << "[t] - Surface Area of Triangular Prism" << "\n";
+						cout << "[P] - Surface Area of Pyramid" << "\n";
+						cout << "[C] - Surface Area of Cone" << "\n";
+						cout << "[h] - Surface Area of Hemisphere" << "\n";
+						cout << "[e] - Surface Area of Ellipsoid" << "\n";
+						cout << "\n" << displaystrings[0];
+						cin >> choice_c;
+						break;
+					case 'C':
+						cout << "CIRCUMFERENCE OF CIRCLE:" << "\n";
+						cout << "\n" << "Enter the circle's diameter>";
+						cin >> doubleinput1;
+						cout << "="<< Circumference(doubleinput1/2) << "\n";
+						break;
+					case 'D':
+						cout << "DEGREES TO RADIANS:" << "\n";
+						cout << "\n" << "Enter your angle>";
+						cin >> doubleinput1;
+						cout << "="<< DegreesToRadians(doubleinput1) << "\n";
+						break;
+					case 'R':
+						cout << "RADIANS TO DEGREES:" << "\n";
+						cout << "\n" << "Enter your angle>";
+						cin >> doubleinput1;
+						cout << "="<< RadiansToDegrees(doubleinput1) << "\n";
+						break;
 					default:
 						cout << displaystrings[1] << "\n";
 						break;
+					if (choice_b == 'P' || choice_b == 'A') {
+						//Code
+					}
+					if (choice_b == 'V' || choice_b == 'S') {
+						//Code
+					}
 				}
 				break;
 			case 'T':
@@ -214,11 +289,35 @@ int main() {
 				}
 				else {
 					switch(choice_b) {
+						case 'P':
+							cout << "PYTHAGOREAN THEOREM:" << "\n";
+							cout << "[a] - Calculate for side a" << "\n";
+							cout << "[b] - Calculate for side b" << "\n";
+							cout << "[c] - Calculate for side c" << "\n";
+							cout << "\n" << "What are you calculating for?>";
+							cin >> choice_c;
+							break;
+						case 'L':
+							cout << "LAW OF SINES:" << "\n";
+							cout << "[a] - Calculate for side a" << "\n";
+							cout << "[b] - Calculate for side b" << "\n";
+							cout << "[A] - Calculate for angle A" << "\n";
+							cout << "[B] - Calculate for angle B" << "\n";
+							cout << "\n" << "What are you calculating for?>";
+							cin >> choice_c;
+							break;
+						case 'O':
+							cout << "LAW OF COSINES:" << "\n";
+							cout << "[a] - Calculate for side a" << "\n";
+							cout << "[b] - Calculate for side b" << "\n";
+							cout << "[c] - Calculate for side c" << "\n";
+							cout << "\n" << "What are you calculating for?>";
+							cin >> choice_c;
+							break;
 						default:
 							cout << displaystrings[1] << "\n";
 							break;
 					}
-
 				}
 				break;
 			case 'N':
@@ -231,6 +330,38 @@ int main() {
 				cin >> choice_b;
 				cout << "--------------------------------" << "\n";
 				switch(choice_b) {
+					case 'B':
+						cout << "CONVERT BINARY NUMBER:" << "\n";
+						cout << "[O] - Convert to Octal" << "\n";
+						cout << "[D] - Convert to Decimal" << "\n";
+						cout << "[H] - Convert to Hexadecimal" << "\n";
+						cout << "\n" << "What are you converting to?>";
+						cin >> choice_c;
+						break;
+					case 'O':
+						cout << "CONVERT OCTAL NUMBER:" << "\n";
+						cout << "[B] - Convert to Binary" << "\n";
+						cout << "[D] - Convert to Decimal" << "\n";
+						cout << "[H] - Convert to Hexadecimal" << "\n";
+						cout << "\n" << "What are you converting to?>";
+						cin >> choice_c;
+						break;
+					case 'D':
+						cout << "CONVERT DECIMAL NUMBER:" << "\n";
+						cout << "[B] - Convert to Binary" << "\n";
+						cout << "[O] - Convert to Octal" << "\n";
+						cout << "[H] - Convert to Hexadecimal" << "\n";
+						cout << "\n" << "What are you converting to?>";
+						cin >> choice_c;
+						break;
+					case 'H':
+						cout << "CONVERT HEXADECIMAL NUMBER:" << "\n";
+						cout << "[B] - Convert to Binary" << "\n";
+						cout << "[O] - Convert to Octal" << "\n";
+						cout << "[D] - Convert to Decimal" << "\n";
+						cout << "\n" << "What are you converting to?>";
+						cin >> choice_c;
+						break;
 					default:
 						cout << displaystrings[1] << "\n";
 						break;
@@ -454,7 +585,7 @@ double Perimeter(char shape, double val1, double val2, double val3, double val4)
 			return trside1 + trside2 + trside3 + trside4;
 			break;
 		default:
-			return 0;
+			return 0.0;
 			break;
 	}
 }
